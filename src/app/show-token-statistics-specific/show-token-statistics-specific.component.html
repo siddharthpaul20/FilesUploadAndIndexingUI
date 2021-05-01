@@ -1,0 +1,20 @@
+<div *ngIf="show==true">
+    <h3>
+        <table>
+            <thead>
+                  <tr>
+                     <th>#Word</th>
+                     <th>Frequency</th>
+                     <th>Percentage</th>
+                 </tr>
+            </thead>
+            <tbody>
+                  <tr  *ngFor = "let dir of records">
+                     <th>{{dir.word}}</th>
+                     <th>{{dir.freq}}</th>
+                     <th>{{dir.percent}}</th>
+                  </tr>
+            </tbody>
+        </table>
+    </h3>
+</div>

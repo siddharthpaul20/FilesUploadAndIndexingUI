@@ -1,0 +1,21 @@
+
+<div>
+    <h3>
+        <table>
+           <thead>
+              <tr>
+                 <th>#Indexed Directories</th>
+                 <th>Action</th>
+              </tr>
+           </thead>
+           <tbody>
+              <tr  *ngFor = "let dir of records">
+                 <th><a  >{{dir.directory}}</a></th>
+                 <td>
+                    <button type="button" [routerLink]="['/folderInsight',dir.directory]"  >Show Operations</button>
+                 </td>
+              </tr>
+           </tbody>
+        </table>
+    </h3>
+</div>

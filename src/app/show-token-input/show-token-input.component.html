@@ -1,0 +1,45 @@
+<div class = "container">
+        <div class="row">
+            <div class="col-md-6">
+                
+                <form name="form" #f="ngForm" (ngSubmit)="sendTokenToBackEnd()" novalidate class="feedback-form">
+                    <!-- folderToIndex-->
+                    <div class="form-group">
+                        <label for="name">Absolute path of folder that is already indexed : </label>
+                        <input type="text"
+                               id="name"
+                               class="form-control"
+                               name="name"
+                               placeholder="Folder to index" [(ngModel)]="model.folderToIndex"/>
+                    </div>
+    
+                    
+    
+                    <button type="submit" class="btn btn-info pull-right" style="text-align:center"  >   
+                        <i class="fa fa-envelope-o"></i>
+                        <span> Show Indexes </span>
+                    </button>
+                </form>
+                    <div *ngIf ="show==true">
+                           <table>
+                               <h5>
+                               <thead>
+                                  <tr>
+                                     <th>#Word</th>
+                                     <th>AbsolutePath</th>
+                                     <th>Frequency</th>
+                                   </tr>
+                               </thead>
+                                <tbody>
+                                  <tr *ngFor="let bk of records">
+                                     <th>{{bk.word}}</th>
+                                     <td>{{bk.absolutePath}}</td>
+                                     <td>{{bk.freq}}</td>
+                                  </tr>
+                                </tbody>
+                                </h5>
+                           </table>
+                    </div>
+            </div>
+        </div>
+    </div>

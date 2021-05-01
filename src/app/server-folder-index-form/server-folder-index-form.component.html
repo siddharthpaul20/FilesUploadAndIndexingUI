@@ -1,0 +1,61 @@
+    
+<div class="container">
+    <div class="row custom-wrapper">
+        <div class="col-md-12">
+    
+            <!-- Form starts -->
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                <div class="group-gap">
+                    <div class="d-block my-3">
+    
+                        <div >
+                            <label for="folderToIndex">Absolute 66 path of folder in the backend server to index : </label>
+                            <select class="custom-select" (change)="changeFolderToIndex($event)" formControlName="folderToIndex">
+                            <option value="">Choose folder to index</option>
+                            <option *ngFor="let city of dDriveDirectories" [ngValue]="city.directory">{{city.directory}}</option>
+                            </select>
+    
+                            <!-- error block -->
+                            <div class="invalid-feedback" *ngIf="isSubmitted && folderToIndex.errors?.required">
+                                <sup>*</sup>Please select folder to index
+                            </div>
+                        </div>
+
+                        <div >
+                                <label for="folderCIndex">Absolute path of folder in the backend server that will contain index : </label>
+                                <select class="custom-select" (change)="changeFolderCIndex($event)" formControlName="folderCIndex">
+                                <option value="">Choose folder that will contain indexes</option>
+                                <option *ngFor="let city of dDriveDirectories" [ngValue]="city.directory">{{city.directory}}</option>
+                                </select>
+        
+                                <!-- error block -->
+                                <div class="invalid-feedback" *ngIf="isSubmitted && folderCIndex.errors?.required">
+                                    <sup>*</sup>Please select folder that will contain indexes
+                                </div>
+                        </div>
+
+                        <div >
+                                <label for="stopWords">Absolute path of folder in the backend server that will contain index : </label>
+                                <select class="custom-select" (change)="changeStopWords($event)" formControlName="stopWords">
+                                <option value="">Choose stopword file</option>
+                                <option *ngFor="let city of City" [ngValue]="city">{{city}}</option>
+                                </select>
+        
+                                <!-- error block -->
+                                <div class="invalid-feedback" *ngIf="isSubmitted && stopWords.errors?.required">
+                                    <sup>*</sup>Please select stopword file
+                                </div>
+                        </div>
+                        
+                        
+    
+                    </div>
+                </div>
+    
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-danger btn-lg btn-block">Submit</button>
+            </form><!-- Form ends -->
+    
+        </div>
+    </div>
+</div>

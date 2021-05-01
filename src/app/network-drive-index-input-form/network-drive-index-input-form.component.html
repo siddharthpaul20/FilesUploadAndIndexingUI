@@ -1,0 +1,38 @@
+<div class = "container">
+        <div class="row">
+            <div class="col-md-6">
+                
+                <form name="form" #f="ngForm" (ngSubmit)="sendSharedDriveIndexInput()" novalidate class="feedback-form">
+                    <!-- folderToIndex-->
+                    <div class="form-group">
+                        <label for="name">Absolute path of folder in the shared drive to index : </label>
+                        <input type="text"
+                               id="name"
+                               class="form-control"
+                               name="name"
+                               placeholder="Folder to index" [(ngModel)]="model.folderToIndex"/>
+                    </div>
+    
+                    <!-- folderCIndex-->
+                    <div class="form-group">
+                        <label for="email">Absolute path of folder that will contain indexes : </label>
+                        <input type="text"
+                               id="email"
+                               class="form-control"
+                               name="email"
+                               placeholder="Destination folder path" [(ngModel)]="model.folderCIndex"/>
+                    </div>
+    
+                    <!-- pathTxtFile-->
+                    <!-- we provide the default path "d:/ts/stw.txt" of stopword file in component file-->
+    
+                    <button type="submit" class="btn btn-info pull-right">
+                        <i class="fa fa-envelope-o"></i>
+                        <span> Start Indexing</span>
+                    </button>
+                </form>
+            </div>
+        
+            <!-- Show the result of fileStats here -->
+        </div>
+    </div>

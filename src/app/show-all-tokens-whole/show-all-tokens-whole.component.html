@@ -1,0 +1,20 @@
+<div *ngIf="show==true">
+    <table>
+        <h3>
+        <thead>
+           <tr>
+              <th>#Word</th>
+              <th>AbsolutePath</th>
+              <th>Frequency</th>
+            </tr>
+        </thead>
+         <tbody>
+           <tr *ngFor="let dir of records">
+              <th>{{dir.word}}</th>
+              <td>{{dir.absolutePath}}</td>
+              <td>{{dir.freq}}</td>
+           </tr>
+         </tbody>
+         </h3>
+    </table>
+</div>

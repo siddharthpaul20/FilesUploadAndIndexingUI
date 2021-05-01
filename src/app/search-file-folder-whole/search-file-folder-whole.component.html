@@ -1,0 +1,70 @@
+<div class = "container">
+    <div class="row">
+        <div class="col-md-6">
+            
+            <form name="form" #f="ngForm" (ngSubmit)="sendFileFolderToBackend()" novalidate class="feedback-form">
+                <!-- folderToIndex-->
+                <div class="form-group">
+                    <label for="name">Enter the file name or folder name to search in all the indexed folders : </label>
+                    <input type="text"
+                           id="name"
+                           class="form-control"
+                           name="name"
+                           placeholder="file or folder name" [(ngModel)]="model.fileFolderToSearch"/>
+                </div>
+
+                
+
+                <button type="submit" class="btn btn-info pull-right" style="text-align:center"  >   
+                    <i class="fa fa-envelope-o"></i>
+                    <span> Show Search Results </span>
+                </button>
+            </form>
+        </div>
+        <div *ngIf="show==true">
+                <h3>
+                    <table>
+                       <thead>
+                          <tr>
+                            <th>#File Name</th>
+                            <th>Parent Folder</th>
+                            <th>Absolute Path</th>
+                            <th>Action</th>
+                            <th>FileSize</th>
+                            <th>Creation Date</th>
+                            <th>Last Modified Date</th>
+                            <th>No. of Chars</th>
+                            <th>No. of Words</th>
+                            <th>No. of Lines</th>
+                            
+                          </tr>
+                       </thead>
+                       <tbody>
+                          <tr  *ngFor = "let dir of records">
+                             <th>{{ dir.fileName }}</th>
+                             <th>{{ dir.parentFolder }}</th>
+                             <th>{{ dir.absolutePath }}</th>
+                             <div *ngIf="dir.isDirectoryType==true">
+                                <td>
+                                        <button type="button" [routerLink]="['/folderInsight',dir.absolutePath]" >Show Operations</button>
+                                </td>
+                             </div>
+                             <div *ngIf="dir.isDirectoryType==false">
+                                <td>
+                                    <button type="button" [routerLink]="['/openContent',dir.absolutePath]" >Open Content</button>
+                                </td>
+                             </div>
+                             <th>{{ dir.size }}</th>
+                             <th>{{ dir.creationDate | date: 'dd/MM/yyyy'}}</th>
+                             <th>{{ dir.lastModifiedDate | date: 'dd/MM/yyyy'}}</th>
+                             <th>{{ dir.noOfChars }}</th>
+                             <th>{{ dir.noOfWords }}</th>
+                             <th>{{ dir.noOfLines }}</th> 
+                             
+                          </tr>
+                       </tbody>
+                    </table>
+                </h3>
+        </div>
+    </div>
+</div>

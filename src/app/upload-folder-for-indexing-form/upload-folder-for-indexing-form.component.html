@@ -1,0 +1,68 @@
+<!-- Form starts -->
+<form #myForm="ngForm" (ngSubmit)="submitForm(myForm,folderInput.files)" novalidate enctype="multipart/form-data">
+  <!-- Gender -->
+  <div class="form-group">
+    <p>Do you want to use default stopwords for indexing :</p>
+    <div>
+      <input #choice type="radio" class="custom-control-input" value="yes" name="choice" (click)="doNotShowStopWordFileDiv()" ngModel required>
+      <label class="custom-control-label" for="yes">YES</label>
+    </div>
+
+    <div>
+      <input #choice type="radio" class="custom-control-input" value="no" name="choice"  (click)="toUploadStopWordFile=true" ngModel required>
+      <label class="custom-control-label" for="no">NO</label>
+    </div>
+  </div>
+
+  <div *ngIf="isSubmitted && myForm.invalid">
+     <p>Please select either value</p>
+  </div>
+
+
+
+
+<!-- Stopword text end area -->
+
+<div *ngIf="toUploadStopWordFile==true" class="form-group">
+    <!-- Stopword text input area -->
+  <div class="form-group">
+    <label for="stopWordInput">Enter the stopwords in the text box, seperated by comma : </label>
+    <input type="textarea"  style="width:500px" rows="4" cols="50"
+          #stopWordInput
+          class="form-control"
+          name="stopWordInput"
+          placeholder="Enter the stopwords seperated by the comma" [(ngModel)]="model.stopWordInput" [ngModelOptions]="{standalone: true}" />
+  </div>
+</div>
+
+<!-- End of stopword file area -->
+<p>Select folder to upload</p>
+<div class="form-group">
+    <div class="col-md-6">
+      <div *ngIf="folderUpload.status==='error'">
+          <div [innerHTML]="folderUpload.message"></div>
+      </div>
+      <div *ngIf="folderUpload.status==='progress'">
+          <div class="progress" style="height: 20px;margin-bottom:20px;">
+            <div class="progress-bar" role="progressbar" [style.width.%]="folderUpload.message" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{folderUpload.message}}%</div>
+          </div>
+      </div>
+      
+        <div class="form-group">
+          <input #folderInput type="file" name="folderInput" webkitdirectory  ngModel required/>
+        </div>
+        <div *ngIf="isSubmitted && myForm.invalid">
+            <p>Please select a folder</p>
+         </div>
+      
+      <div *ngIf="folderUpload.status==='success'">
+        <p> Folder uploaded successfully.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <br/>
+
+  <button type="submit" class="btn btn-danger btn-lg btn-block" >Upload and start indexing</button>
+</form><!-- Form ends -->
